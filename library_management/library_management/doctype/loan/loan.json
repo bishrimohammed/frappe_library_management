@@ -9,7 +9,9 @@
   "member",
   "book",
   "loan_date",
-  "return_date"
+  "return_date",
+  "due_date",
+  "status"
  ],
  "fields": [
   {
@@ -37,11 +39,24 @@
    "fieldname": "return_date",
    "fieldtype": "Datetime",
    "label": "Return Date"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date",
+   "read_only": 1
+  },
+  {
+   "default": "Borrowed",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Borrowed\nReturned"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-10 17:01:54.412547",
+ "modified": "2025-02-10 19:00:50.534385",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Loan",
