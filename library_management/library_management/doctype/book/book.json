@@ -10,7 +10,8 @@
   "author",
   "column_break_upjf",
   "isbn",
-  "publish_date"
+  "publish_date",
+  "status"
  ],
  "fields": [
   {
@@ -39,11 +40,18 @@
    "fieldname": "publish_date",
    "fieldtype": "Date",
    "label": "Publish Date"
+  },
+  {
+   "default": "Available",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Available\nLoaned"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-10 15:57:29.834326",
+ "modified": "2025-02-10 17:04:18.572369",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Book",

@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class UnitTestMembership(UnitTestCase):
+class UnitTestLoan(UnitTestCase):
 	"""
-	Unit tests for Membership.
+	Unit tests for Loan.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class IntegrationTestMembership(IntegrationTestCase):
+class IntegrationTestLoan(IntegrationTestCase):
 	"""
-	Integration tests for Membership.
+	Integration tests for Loan.
 	Use this class for testing interactions between multiple components.
 	"""
 
