@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "MI.#####",
  "creation": "2025-02-10 15:30:29.003387",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -47,11 +47,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-10 15:51:59.267209",
+ "modified": "2025-02-10 15:56:37.570007",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Member",
- "naming_rule": "Random",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
