@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-
+from datetime import datetime
 
 class Book(Document):
 	# begin: auto-generated types
@@ -24,6 +24,12 @@ class Book(Document):
 	def validate(self):
 		if self.isbn and not self.is_valid_isbn(self.isbn):
 			frappe.throw("Invalid ISBN. It must be either 10 or 13 characters long.")
+		if self.publish_date:
+			publish_date = datetime.strptime(str(self.publish_date), "%Y-%m-%d").date()
+			today = datetime.today().date()
+
+			if publish_date > today:
+				frappe.throw("Publish Date cannot be in the future.")
 			
 	def is_valid_isbn(self, isbn):
 		return len(isbn) in [10, 13] and isbn.isdigit()
