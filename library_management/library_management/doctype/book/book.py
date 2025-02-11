@@ -1,7 +1,7 @@
 # Copyright (c) 2025, Bishri Mohammed and contributors
 # For license information, please see license.txt
 
-# import frappe
+import frappe
 from frappe.model.document import Document
 
 
@@ -21,4 +21,9 @@ class Book(Document):
 		title: DF.Data
 	# end: auto-generated types
 
-	pass
+	def validate(self):
+		if self.isbn and not self.is_valid_isbn(self.isbn):
+			frappe.throw("Invalid ISBN. It must be either 10 or 13 characters long.")
+			
+	def is_valid_isbn(self, isbn):
+		return len(isbn) in [10, 13] and isbn.isdigit()
