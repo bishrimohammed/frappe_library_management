@@ -4,7 +4,6 @@
 import frappe
 from frappe.model.document import Document
 from frappe.utils import validate_email_address
-from datetime import datetime
 
 class Member(Document):
     def validate(self):
