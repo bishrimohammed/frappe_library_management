@@ -37,7 +37,7 @@
   },
   {
    "fieldname": "return_date",
-   "fieldtype": "Datetime",
+   "fieldtype": "Date",
    "label": "Return Date"
   },
   {
@@ -56,7 +56,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-10 19:00:50.534385",
+ "modified": "2025-02-11 12:23:49.843435",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Loan",
