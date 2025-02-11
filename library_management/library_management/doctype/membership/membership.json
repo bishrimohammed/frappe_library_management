@@ -10,7 +10,8 @@
   "amended_from",
   "member",
   "start_date",
-  "expire_date"
+  "expire_date",
+  "full_name"
  ],
  "fields": [
   {
@@ -44,12 +45,19 @@
    "fieldname": "expire_date",
    "fieldtype": "Datetime",
    "label": "Expire Date"
+  },
+  {
+   "fetch_from": "member.full_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-10 18:24:05.926622",
+ "modified": "2025-02-11 12:02:09.528591",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Membership",
