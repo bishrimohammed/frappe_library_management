@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "Ms.#####",
+ "autoname": "MS.#####",
  "creation": "2025-02-10 18:21:28.777715",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -9,9 +9,10 @@
   "section_break_npgm",
   "amended_from",
   "member",
+  "full_name",
+  "column_break_izxg",
   "start_date",
-  "expire_date",
-  "full_name"
+  "expire_date"
  ],
  "fields": [
   {
@@ -43,7 +44,7 @@
   },
   {
    "fieldname": "expire_date",
-   "fieldtype": "Datetime",
+   "fieldtype": "Date",
    "label": "Expire Date"
   },
   {
@@ -52,12 +53,16 @@
    "fieldtype": "Data",
    "label": "Full Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_izxg",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-11 12:02:09.528591",
+ "modified": "2025-02-11 12:21:48.043515",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Membership",

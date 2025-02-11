@@ -16,7 +16,7 @@ class Membership(Document):
         from frappe.types import DF
 
         amended_from: DF.Link | None
-        expire_date: DF.Datetime | None
+        expire_date: DF.Date | None
         full_name: DF.Data | None
         member: DF.Link
         start_date: DF.Date | None
