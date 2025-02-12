@@ -15,11 +15,10 @@ class Loan(Document):
 		from frappe.types import DF
 
 		book: DF.Link
-		due_date: DF.Date | None
 		loan_date: DF.Date | None
 		member: DF.Link
 		return_date: DF.Date | None
-		status: DF.Literal["Borrowed", "Returned"]
+		type: DF.Literal["Borrow", "Return"]
 	# end: auto-generated types
 
 	pass
