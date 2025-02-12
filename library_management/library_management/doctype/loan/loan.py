@@ -3,7 +3,8 @@
 
 import frappe
 from frappe.model.document import Document
-# from 
+
+from frappe.model.docstatus import DocStatus 
 
 
 class Loan(Document):
