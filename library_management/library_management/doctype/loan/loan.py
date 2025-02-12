@@ -52,7 +52,7 @@ class Loan(Document):
 			frappe.throw("Book cannot be returned without being Borrowed first")
 
 	def validate_maximum_limit(self):
-		max_articles = frappe.db.get_single_value("Library Setting", "max_articles")
+		max_books = frappe.db.get_single_value("Library Setting", "maximum_number_of_borrow_book")
 		count = frappe.db.count(
             "Loan",
             {
@@ -61,7 +61,7 @@ class Loan(Document):
                 "docstatus": DocStatus.submitted(),
             },
         )
-		if count >= max_articles:
+		if count >= max_books:
 			frappe.throw("Maximum limit reached for Borrowing books")
 
 	def validate_membership(self):
