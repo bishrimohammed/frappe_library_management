@@ -23,56 +23,56 @@ class Loan(Document):
 	# end: auto-generated types
 
 	def before_submit(self):
-		if self.type == "Issue":
-			self.validate_issue()
+		if self.type == "Borrow":
+			self.validate_borrow()
 			self.validate_maximum_limit()
             # set the article status to be Issued
-			article = frappe.get_doc("Article", self.article)
-			article.status = "Issued"
-			article.save()
+			book = frappe.get_doc("Book", self.book)
+			book.status = "Borrowed"
+			book.save()
 
 		elif self.type == "Return":
 			self.validate_return()
             # set the article status to be Available
-			article = frappe.get_doc("Article", self.article)
-			article.status = "Available"
-			article.save()
+			book = frappe.get_doc("Book", self.book)
+			book.status = "Available"
+			book.save()
 
-	def validate_issue(self):
+	def validate_borrow(self):
 		self.validate_membership()
-		article = frappe.get_doc("Article", self.article)
-        # article cannot be issued if it is already issued
-		if article.status == "Issued":
-			frappe.throw("Article is already issued by another member")
+		book = frappe.get_doc("Book", self.book)
+        # book cannot be issued if it is already issued
+		if book.status == "Borrow":
+			frappe.throw("book is already Borrowed by another member")
 
 	def validate_return(self):
-		article = frappe.get_doc("Article", self.article)
-        # article cannot be returned if it is not issued first
-		if article.status == "Available":
-			frappe.throw("Article cannot be returned without being issued first")
+		book = frappe.get_doc("Book", self.book)
+        # book cannot be returned if it is not issued first
+		if book.status == "Available":
+			frappe.throw("Book cannot be returned without being Borrowed first")
 
 	def validate_maximum_limit(self):
-		max_articles = frappe.db.get_single_value("Library Settings", "max_articles")
+		max_articles = frappe.db.get_single_value("Library Setting", "max_articles")
 		count = frappe.db.count(
-            "Library Transaction",
+            "Loan",
             {
-                "library_member": self.library_member,
-                "type": "Issue",
+                "member": self.member,
+                "type": "Borrow",
                 "docstatus": DocStatus.submitted(),
             },
         )
 		if count >= max_articles:
-			frappe.throw("Maximum limit reached for issuing articles")
+			frappe.throw("Maximum limit reached for Borrowing books")
 
 	def validate_membership(self):
         # check if a valid membership exist for this library member
 		valid_membership = frappe.db.exists(
-            "Library Membership",
+            "Membership",
             {
-                "library_member": self.library_member,
+                "member": self.member,
                 "docstatus": DocStatus.submitted(),
-                "from_date": ("<", self.date),
-                "to_date": (">", self.date),
+                "start_date": ("<", self.date),
+                "expire_date": (">", self.date),
             },
         )
 		if not valid_membership:
