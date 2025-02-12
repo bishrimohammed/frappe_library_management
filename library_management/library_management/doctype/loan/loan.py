@@ -17,9 +17,8 @@ class Loan(Document):
 		from frappe.types import DF
 
 		book: DF.Link
-		loan_date: DF.Date | None
+		date: DF.Date | None
 		member: DF.Link
-		return_date: DF.Date | None
 		type: DF.Literal["Borrow", "Return"]
 	# end: auto-generated types
 
@@ -27,14 +26,14 @@ class Loan(Document):
 		if self.type == "Borrow":
 			self.validate_borrow()
 			self.validate_maximum_limit()
-            # set the article status to be Issued
+            # set the book status to be Borrowed
 			book = frappe.get_doc("Book", self.book)
 			book.status = "Borrowed"
 			book.save()
 
 		elif self.type == "Return":
 			self.validate_return()
-            # set the article status to be Available
+            # set the book status to be Available
 			book = frappe.get_doc("Book", self.book)
 			book.status = "Available"
 			book.save()
@@ -42,13 +41,13 @@ class Loan(Document):
 	def validate_borrow(self):
 		self.validate_membership()
 		book = frappe.get_doc("Book", self.book)
-        # book cannot be issued if it is already issued
+        # book cannot be borrowed if it is already borrowed
 		if book.status == "Borrow":
 			frappe.throw("book is already Borrowed by another member")
 
 	def validate_return(self):
 		book = frappe.get_doc("Book", self.book)
-        # book cannot be returned if it is not issued first
+        # book cannot be returned if it is not borrowed first
 		if book.status == "Available":
 			frappe.throw("Book cannot be returned without being Borrowed first")
 

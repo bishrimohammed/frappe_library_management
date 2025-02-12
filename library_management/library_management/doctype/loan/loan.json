@@ -8,10 +8,9 @@
  "field_order": [
   "member",
   "book",
-  "type",
   "column_break_exra",
-  "loan_date",
-  "return_date"
+  "type",
+  "date"
  ],
  "fields": [
   {
@@ -31,16 +30,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "loan_date",
-   "fieldtype": "Date",
-   "label": "Loan Date"
-  },
-  {
-   "fieldname": "return_date",
-   "fieldtype": "Date",
-   "label": "Return Date"
-  },
-  {
    "default": "Borrow",
    "fieldname": "type",
    "fieldtype": "Select",
@@ -50,11 +39,16 @@
   {
    "fieldname": "column_break_exra",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-12 18:21:27.358912",
+ "modified": "2025-02-12 19:16:19.605878",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Loan",
