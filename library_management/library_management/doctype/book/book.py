@@ -31,5 +31,11 @@ class Book(Document):
 			if publish_date > today:
 				frappe.throw("Publish Date cannot be in the future.")
 			
+	# check isbn is already exist
+	def before_submit(self):
+		existing = frappe.db.exists("Book", {"isbn": self.isbn})
+		if existing:
+			frappe.throw("ISBN already exists.")
+
 	def is_valid_isbn(self, isbn):
 		return len(isbn) in [10, 13] and isbn.isdigit()
