@@ -12,7 +12,7 @@ class Loan(Document):
 	# This code is auto-generated. Do not modify anything in this block.
 
 	from typing import TYPE_CHECKING
-
+ 
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
@@ -37,6 +37,9 @@ class Loan(Document):
 			book = frappe.get_doc("Book", self.book)
 			book.status = "Available"
 			book.save()
+	# check if 
+	# def before_save(self):
+
 
 	def validate_borrow(self):
 		self.validate_membership()
