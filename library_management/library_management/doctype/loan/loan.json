@@ -10,7 +10,8 @@
   "book",
   "column_break_exra",
   "type",
-  "date"
+  "date",
+  "amended_from"
  ],
  "fields": [
   {
@@ -44,11 +45,22 @@
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Loan",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-02-12 19:16:19.605878",
+ "modified": "2025-02-16 20:52:47.794537",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Loan",

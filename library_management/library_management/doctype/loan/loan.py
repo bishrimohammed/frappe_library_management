@@ -12,10 +12,11 @@ class Loan(Document):
 	# This code is auto-generated. Do not modify anything in this block.
 
 	from typing import TYPE_CHECKING
- 
+
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
+		amended_from: DF.Link | None
 		book: DF.Link
 		date: DF.Date | None
 		member: DF.Link
