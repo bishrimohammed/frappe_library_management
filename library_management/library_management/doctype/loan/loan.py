@@ -46,7 +46,7 @@ class Loan(Document):
 		self.validate_membership()
 		book = frappe.get_doc("Book", self.book)
         # book cannot be borrowed if it is already borrowed
-		if book.status == "Borrow":
+		if book.status == "Borrowed":
 			frappe.throw("book is already Borrowed by another member")
 
 	def validate_return(self):
