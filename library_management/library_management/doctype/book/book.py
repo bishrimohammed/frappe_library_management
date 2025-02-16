@@ -13,10 +13,8 @@ class Book(Document):
 
 	if TYPE_CHECKING:
 		from frappe.types import DF
-		from library_management.library_management.doctype.book_copy.book_copy import BookCopy
 
 		author: DF.Data | None
-		book_copies: DF.Table[BookCopy]
 		isbn: DF.Data | None
 		publish_date: DF.Date | None
 		status: DF.Literal["Available", "Borrowed"]
