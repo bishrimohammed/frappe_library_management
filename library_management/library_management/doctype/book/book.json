@@ -52,12 +52,13 @@
   {
    "fieldname": "book_copies",
    "fieldtype": "Table",
+   "label": "Book Copy",
    "options": "Book Copy"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-16 19:58:41.186736",
+ "modified": "2025-02-16 20:06:26.755825",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Book",
