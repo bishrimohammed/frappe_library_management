@@ -11,7 +11,8 @@
   "column_break_upjf",
   "isbn",
   "publish_date",
-  "status"
+  "status",
+  "book_copies"
  ],
  "fields": [
   {
@@ -47,11 +48,16 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "Available\nBorrowed"
+  },
+  {
+   "fieldname": "book_copies",
+   "fieldtype": "Table",
+   "options": "Book Copy"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-15 17:55:42.368813",
+ "modified": "2025-02-16 19:58:41.186736",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Book",
