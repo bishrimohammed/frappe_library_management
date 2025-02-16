@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 
 from frappe.model.docstatus import DocStatus 
-
+from datetime import datetime
 
 class Loan(Document):
 	# begin: auto-generated types
@@ -18,13 +18,21 @@ class Loan(Document):
 
 		amended_from: DF.Link | None
 		book: DF.Link
-		date: DF.Date | None
+		date: DF.Date
 		member: DF.Link
 		type: DF.Literal["Borrow", "Return"]
 	# end: auto-generated types
 
+	def validate(self):
+		if self.date and self.type=="Borrow":
+			date = datetime.strptime(str(self.date), "%Y-%m-%d").date()
+			today = datetime.today().date()
+
+			if date < today:
+				frappe.throw("Date cannot be in the past.")
 	def before_submit(self):
 		if self.type == "Borrow":
+			self.loan_date= self.date
 			self.validate_borrow()
 			self.validate_maximum_limit()
             # set the book status to be Borrowed
