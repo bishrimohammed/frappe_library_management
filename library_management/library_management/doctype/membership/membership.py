@@ -22,10 +22,17 @@ class Membership(Document):
         start_date: DF.Date | None
     # end: auto-generated types
     def validate(self):
+        # check if expire date is later than start date
         if self.expire_date and self.start_date:
             if self.expire_date <= self.start_date:
                 frappe.throw("Expire date must be later than start date.")               
-        
+            # check if start date and expire date are not in the past
+            if  self.start_date < frappe.utils.today():
+                    frappe.throw("Start date cannot be in the past.")
+            # check if expire date are not in the past
+            if self.expire_date < frappe.utils.today():
+                frappe.throw("Expire date cannot be in the past.")
+
     
     def before_submit(self):
         exists = frappe.db.exists(
