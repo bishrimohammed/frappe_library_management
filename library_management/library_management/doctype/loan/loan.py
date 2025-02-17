@@ -17,11 +17,11 @@ class Loan(Document):
 		from frappe.types import DF
 
 		amended_from: DF.Link | None
+		member: DF.Link
+		type: DF.Literal["Borrow", "Return"]
 		book: DF.Link
 		date: DF.Date
 		due_date: DF.Date | None
-		member: DF.Link
-		type: DF.Literal["Borrow", "Return"]
 	# end: auto-generated types
 
 	def validate(self):
@@ -31,6 +31,7 @@ class Loan(Document):
 			
 			if date < today:
 				frappe.throw("Date cannot be in the past.")
+	
 	def before_submit(self):
 		if self.type == "Borrow":
 			self.loan_date= self.date
@@ -58,49 +59,6 @@ class Loan(Document):
 		if book.status == "Borrowed":
 			frappe.throw("book is already Borrowed by another member")
 
-	# def validate_return(self):
-		# book = frappe.get_doc("Book", self.book)
-        # # book cannot be returned if it is not borrowed first
-		# if book.status == "Available":
-		# 	frappe.throw("Book cannot be returned without being Borrowed first")
-		# # check if book is borrowed by the same member who is returning it.
-		# isborrowed = frappe.db.exists("Loan",{
-		# 	"book": self.book,
-		# 	"member": self.member,
-		# 	"type": "Borrow",
-		# 	"docstatus": DocStatus.submitted(),
-		# })
-		# if not isborrowed:
-		# 	frappe.throw("Book can only be returned by the member who borrowed it")
-
-		# # check if loan date is greater than return date
-		# isGreater = frappe.db.exists("Loan",{
-		# 	"book": self.book,
-		# 	"member": self.member,
-		# 	"type": "Borrow",
-		# 	"docstatus": DocStatus.submitted(),
-		# 	"date": (">", self.date)			
-		# })
-		# if isGreater:
-		# 	frappe.throw("Return Date must be greater than loan date")
-		
-		# borrow_loan = frappe.get_all(
-		# 	"Loan",
-		# 	filters={
-		# 		"book": self.book,
-		# 		"member": self.member,
-		# 		"type": "Borrow",
-		# 		"docstatus": DocStatus.submitted()
-		# 	},
-		# 	fields=["name"]
-		# )
-
-		# if not borrow_loan:
-		# 	frappe.throw("No corresponding Borrowed Loan found for this Book")
-
-    	# # Cancel the issued transaction
-		# borrow_doc = frappe.get_doc("Loan", borrow_loan[0].name)
-		# borrow_doc.cancel()
 
 	def validate_return(self):
 		"""
