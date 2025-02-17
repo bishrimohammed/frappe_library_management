@@ -59,48 +59,48 @@ class Loan(Document):
 			frappe.throw("book is already Borrowed by another member")
 
 	# def validate_return(self):
-		book = frappe.get_doc("Book", self.book)
-        # book cannot be returned if it is not borrowed first
-		if book.status == "Available":
-			frappe.throw("Book cannot be returned without being Borrowed first")
-		# check if book is borrowed by the same member who is returning it.
-		isborrowed = frappe.db.exists("Loan",{
-			"book": self.book,
-			"member": self.member,
-			"type": "Borrow",
-			"docstatus": DocStatus.submitted(),
-		})
-		if not isborrowed:
-			frappe.throw("Book can only be returned by the member who borrowed it")
+		# book = frappe.get_doc("Book", self.book)
+        # # book cannot be returned if it is not borrowed first
+		# if book.status == "Available":
+		# 	frappe.throw("Book cannot be returned without being Borrowed first")
+		# # check if book is borrowed by the same member who is returning it.
+		# isborrowed = frappe.db.exists("Loan",{
+		# 	"book": self.book,
+		# 	"member": self.member,
+		# 	"type": "Borrow",
+		# 	"docstatus": DocStatus.submitted(),
+		# })
+		# if not isborrowed:
+		# 	frappe.throw("Book can only be returned by the member who borrowed it")
 
-		# check if loan date is greater than return date
-		isGreater = frappe.db.exists("Loan",{
-			"book": self.book,
-			"member": self.member,
-			"type": "Borrow",
-			"docstatus": DocStatus.submitted(),
-			"date": (">", self.date)			
-		})
-		if isGreater:
-			frappe.throw("Return Date must be greater than loan date")
+		# # check if loan date is greater than return date
+		# isGreater = frappe.db.exists("Loan",{
+		# 	"book": self.book,
+		# 	"member": self.member,
+		# 	"type": "Borrow",
+		# 	"docstatus": DocStatus.submitted(),
+		# 	"date": (">", self.date)			
+		# })
+		# if isGreater:
+		# 	frappe.throw("Return Date must be greater than loan date")
 		
-		borrow_loan = frappe.get_all(
-			"Loan",
-			filters={
-				"book": self.book,
-				"member": self.member,
-				"type": "Borrow",
-				"docstatus": DocStatus.submitted()
-			},
-			fields=["name"]
-		)
+		# borrow_loan = frappe.get_all(
+		# 	"Loan",
+		# 	filters={
+		# 		"book": self.book,
+		# 		"member": self.member,
+		# 		"type": "Borrow",
+		# 		"docstatus": DocStatus.submitted()
+		# 	},
+		# 	fields=["name"]
+		# )
 
-		if not borrow_loan:
-			frappe.throw("No corresponding Borrowed Loan found for this Book")
+		# if not borrow_loan:
+		# 	frappe.throw("No corresponding Borrowed Loan found for this Book")
 
-    	# Cancel the issued transaction
-		borrow_doc = frappe.get_doc("Loan", borrow_loan[0].name)
-		borrow_doc.cancel()
+    	# # Cancel the issued transaction
+		# borrow_doc = frappe.get_doc("Loan", borrow_loan[0].name)
+		# borrow_doc.cancel()
 
 	def validate_return(self):
 		"""
@@ -204,8 +204,8 @@ class Loan(Document):
             {
                 "member": self.member,
                 "docstatus": DocStatus.submitted(),
-                "start_date": ("<", self.date),
-                "expire_date": (">", self.date),
+                "start_date": ("<=", self.date),
+                "expire_date": (">=", self.date),
             },
         )
 		if not valid_membership:
