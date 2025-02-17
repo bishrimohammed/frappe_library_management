@@ -21,7 +21,11 @@ class Membership(Document):
         member: DF.Link
         start_date: DF.Date | None
     # end: auto-generated types
-
+    def validate(self):
+        if self.expire_date and self.start_date:
+            if self.expire_date < self.start_date:
+                frappe.throw("Expire date cannot be earlier than start date")
+    
     def before_submit(self):
         exists = frappe.db.exists(
             "Membership",
