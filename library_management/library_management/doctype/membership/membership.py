@@ -23,8 +23,9 @@ class Membership(Document):
     # end: auto-generated types
     def validate(self):
         if self.expire_date and self.start_date:
-            if self.expire_date < self.start_date:
-                frappe.throw("Expire date cannot be earlier than start date")
+            if self.expire_date <= self.start_date:
+                frappe.throw("Expire date must be later than start date.")               
+        
     
     def before_submit(self):
         exists = frappe.db.exists(
@@ -32,7 +33,7 @@ class Membership(Document):
             {
                 "member": self.member,
                 "docstatus": DocStatus.submitted(),
-                # check if the membership's end date is later than this membership's start date
+                # check if the membership's expire date is later than this membership's start date
                 "expire_date": (">", self.start_date),
             },
         )
