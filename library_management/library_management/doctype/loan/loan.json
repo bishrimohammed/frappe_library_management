@@ -6,12 +6,13 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "amended_from",
   "member",
   "book",
   "column_break_exra",
   "type",
   "date",
-  "amended_from"
+  "due_date"
  ],
  "fields": [
   {
@@ -56,12 +57,18 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Due date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-16 21:24:57.917620",
+ "modified": "2025-02-16 22:26:02.384699",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Loan",
