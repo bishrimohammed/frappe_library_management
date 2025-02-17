@@ -59,7 +59,6 @@ class Loan(Document):
 		if book.status == "Borrowed":
 			frappe.throw("book is already Borrowed by another member")
 
-
 	def validate_return(self):
 		"""
 		Main function to validate a book return.
