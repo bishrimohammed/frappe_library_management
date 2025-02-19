@@ -62,7 +62,6 @@
   {
    "fieldname": "due_date",
    "fieldtype": "Date",
-   "hidden": 1,
    "label": "Due date"
   },
   {
@@ -76,7 +75,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-19 13:49:13.509806",
+ "modified": "2025-02-19 14:46:40.137251",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Loan",
