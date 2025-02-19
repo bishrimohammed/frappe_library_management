@@ -10,16 +10,16 @@
  "is_standard": "Yes",
  "json": "{}",
  "letterhead": null,
- "modified": "2025-02-19 14:34:57.184050",
+ "modified": "2025-02-19 14:43:32.333238",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Overdue books",
  "owner": "Administrator",
  "prepared_report": 0,
- "query": " ",
+ "query": " SELECT \r\n    name AS \"Loan ID:Link/Loan\",\r\n    member AS \"Member:Link/Member\",\r\n    book AS \"Book:Link/Book\",\r\n    due_date AS \"Due Date:Date\",\r\n    DATEDIFF(CURDATE(), due_date) AS \"Days Overdue:Int\"\r\nFROM `tabLoan`\r\nWHERE docstatus = 1\r\nAND type = 'Borrow'\r\nAND due_date < CURDATE()\r\nORDER BY due_date ASC;\r\n",
  "ref_doctype": "Loan",
  "report_name": "Overdue books",
- "report_type": "Report Builder",
+ "report_type": "Query Report",
  "roles": [
   {
    "role": "System Manager"
