@@ -21,7 +21,6 @@ class Loan(Document):
 		date: DF.Date
 		due_date: DF.Date | None
 		member: DF.Link
-		titile: DF.Data | None
 		type: DF.Literal["Borrow", "Return"]
 	# end: auto-generated types
 
