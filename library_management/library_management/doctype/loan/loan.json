@@ -9,6 +9,7 @@
   "amended_from",
   "member",
   "book",
+  "titile",
   "column_break_exra",
   "type",
   "date",
@@ -63,12 +64,19 @@
    "fieldtype": "Date",
    "hidden": 1,
    "label": "Due date"
+  },
+  {
+   "fetch_from": "book.title",
+   "fieldname": "titile",
+   "fieldtype": "Data",
+   "label": "Titile",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-16 22:26:02.384699",
+ "modified": "2025-02-19 13:49:13.509806",
  "modified_by": "Administrator",
  "module": "library management",
  "name": "Loan",

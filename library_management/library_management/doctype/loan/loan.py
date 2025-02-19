@@ -17,11 +17,12 @@ class Loan(Document):
 		from frappe.types import DF
 
 		amended_from: DF.Link | None
-		member: DF.Link
-		type: DF.Literal["Borrow", "Return"]
 		book: DF.Link
 		date: DF.Date
 		due_date: DF.Date | None
+		member: DF.Link
+		titile: DF.Data | None
+		type: DF.Literal["Borrow", "Return"]
 	# end: auto-generated types
 
 	def validate(self):
